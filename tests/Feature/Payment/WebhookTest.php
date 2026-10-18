@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\PaymentRecord;
+use App\Models\Subscription;
 use App\Models\SubscriptionPlan;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -87,5 +88,5 @@ test('duplicate webhook is idempotent', function () {
     $this->postJson(route('webhooks.payments'), $payload, ['X-Subscription-Signature' => $signature])->assertOk();
     $this->postJson(route('webhooks.payments'), $payload, ['X-Subscription-Signature' => $signature])->assertOk();
 
-    expect(\App\Models\Subscription::where('user_id', $user->id)->count())->toBe(1);
+    expect(Subscription::where('user_id', $user->id)->count())->toBe(1);
 });

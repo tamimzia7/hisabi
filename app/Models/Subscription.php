@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 #[Fillable(['user_id', 'subscription_plan_id', 'payment_record_id', 'status', 'starts_at', 'ends_at'])]
 class Subscription extends Model
@@ -38,7 +39,7 @@ class Subscription extends Model
     public function isActive(): bool
     {
         return $this->status === 'active'
-            && $this->ends_at instanceof \Illuminate\Support\Carbon
+            && $this->ends_at instanceof Carbon
             && $this->ends_at->isFuture();
     }
 }

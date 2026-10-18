@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\SubscriptionService;
 use Closure;
 use Illuminate\Http\Request;
-use App\Services\SubscriptionService;
 use Symfony\Component\HttpFoundation\Response;
 
 class EnsureSubscriptionAccess

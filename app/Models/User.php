@@ -7,12 +7,12 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
-#[Fillable(['name', 'email', 'password', 'account_type', 'trial_starts_at', 'trial_ends_at'])]
+#[Fillable(['name', 'email', 'password', 'account_type', 'is_admin', 'suspended_at', 'trial_starts_at', 'trial_ends_at'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -31,6 +31,8 @@ class User extends Authenticatable
             'password' => 'hashed',
             'trial_starts_at' => 'datetime',
             'trial_ends_at' => 'datetime',
+            'is_admin' => 'boolean',
+            'suspended_at' => 'datetime',
         ];
     }
 
@@ -62,6 +64,16 @@ class User extends Authenticatable
     public function paymentRecords(): HasMany
     {
         return $this->hasMany(PaymentRecord::class);
+    }
+
+    public function isAdmin(): bool
+    {
+        return (bool) $this->is_admin;
+    }
+
+    public function isSuspended(): bool
+    {
+        return $this->suspended_at !== null;
     }
 
     public function activeSubscription(): ?Subscription

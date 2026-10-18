@@ -1,6 +1,10 @@
 <?php
 
+use App\Models\PaymentRecord;
+use App\Models\SubscriptionPlan;
 use App\Models\User;
+use App\Services\PaymentService;
+use App\Services\SubscriptionService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Route;
 
@@ -38,8 +42,8 @@ test('one users payment does not unlock another user', function () {
     $userA = User::factory()->create();
     $userB = User::factory()->create();
 
-    $plan = \App\Models\SubscriptionPlan::factory()->create(['price' => '100.00', 'currency' => 'BDT']);
-    $payment = \App\Models\PaymentRecord::factory()->create([
+    $plan = SubscriptionPlan::factory()->create(['price' => '100.00', 'currency' => 'BDT']);
+    $payment = PaymentRecord::factory()->create([
         'user_id' => $userA->id,
         'subscription_plan_id' => $plan->id,
         'amount' => '100.00',
@@ -56,7 +60,7 @@ test('one users payment does not unlock another user', function () {
     ];
     $signature = hash_hmac('sha256', json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), 'test-secret');
 
-    app(\App\Services\PaymentService::class)->verifyPayment($payment, $payload, $signature);
+    app(PaymentService::class)->verifyPayment($payment, $payload, $signature);
 
     expect($userA->fresh()->activeSubscription())->not->toBeNull();
     expect($userB->fresh()->activeSubscription())->toBeNull();
@@ -68,11 +72,11 @@ test('renewal restores access to existing data', function () {
         'trial_ends_at' => now()->subDays(10),
     ]);
 
-    $service = app(\App\Services\SubscriptionService::class);
+    $service = app(SubscriptionService::class);
     expect($service->canPerformPaidActions($user))->toBeFalse();
 
-    $plan = \App\Models\SubscriptionPlan::factory()->create(['price' => '100.00', 'currency' => 'BDT', 'duration_days' => 30]);
-    $payment = \App\Models\PaymentRecord::factory()->create([
+    $plan = SubscriptionPlan::factory()->create(['price' => '100.00', 'currency' => 'BDT', 'duration_days' => 30]);
+    $payment = PaymentRecord::factory()->create([
         'user_id' => $user->id,
         'subscription_plan_id' => $plan->id,
         'amount' => '100.00',
@@ -89,7 +93,7 @@ test('renewal restores access to existing data', function () {
     ];
     $signature = hash_hmac('sha256', json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), 'test-secret');
 
-    app(\App\Services\PaymentService::class)->verifyPayment($payment, $payload, $signature);
+    app(PaymentService::class)->verifyPayment($payment, $payload, $signature);
 
     expect($service->canPerformPaidActions($user->fresh()))->toBeTrue();
 });

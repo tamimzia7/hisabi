@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\MessDeposit;
+use App\Models\MessExpense;
+use App\Models\MessMeal;
 use App\Models\User;
 use App\Models\Workspace;
 use App\Models\WorkspaceMember;
@@ -16,15 +19,15 @@ test('meal rate and member balances are calculated correctly', function () {
     $memberB = WorkspaceMember::factory()->create(['workspace_id' => $workspace->id, 'name' => 'B']);
 
     // meals: A 2, B 2 => total 4
-    \App\Models\MessMeal::create(['workspace_id' => $workspace->id, 'member_id' => $memberA->id, 'meal_date' => now()->toDateString(), 'breakfast' => 1, 'lunch' => 1, 'dinner' => 0]);
-    \App\Models\MessMeal::create(['workspace_id' => $workspace->id, 'member_id' => $memberB->id, 'meal_date' => now()->toDateString(), 'breakfast' => 1, 'lunch' => 0, 'dinner' => 1]);
+    MessMeal::create(['workspace_id' => $workspace->id, 'member_id' => $memberA->id, 'meal_date' => now()->toDateString(), 'breakfast' => 1, 'lunch' => 1, 'dinner' => 0]);
+    MessMeal::create(['workspace_id' => $workspace->id, 'member_id' => $memberB->id, 'meal_date' => now()->toDateString(), 'breakfast' => 1, 'lunch' => 0, 'dinner' => 1]);
 
     // eligible market expense 400
-    \App\Models\MessExpense::create(['workspace_id' => $workspace->id, 'expense_date' => now()->toDateString(), 'category' => 'market', 'amount' => '400.00']);
+    MessExpense::create(['workspace_id' => $workspace->id, 'expense_date' => now()->toDateString(), 'category' => 'market', 'amount' => '400.00']);
 
     // deposits
-    \App\Models\MessDeposit::create(['workspace_id' => $workspace->id, 'member_id' => $memberA->id, 'amount' => '200.00', 'deposit_date' => now()->toDateString()]);
-    \App\Models\MessDeposit::create(['workspace_id' => $workspace->id, 'member_id' => $memberB->id, 'amount' => '100.00', 'deposit_date' => now()->toDateString()]);
+    MessDeposit::create(['workspace_id' => $workspace->id, 'member_id' => $memberA->id, 'amount' => '200.00', 'deposit_date' => now()->toDateString()]);
+    MessDeposit::create(['workspace_id' => $workspace->id, 'member_id' => $memberB->id, 'amount' => '100.00', 'deposit_date' => now()->toDateString()]);
 
     $report = app(MessAccountingService::class)->monthlyReport($workspace, (int) now()->year, (int) now()->month);
 
@@ -51,9 +54,9 @@ test('rent excluded from meal rate unless configured', function () {
     $workspace = Workspace::factory()->create(['owner_id' => $user->id, 'type' => 'mess', 'settings' => ['include_rent' => false]]);
 
     $member = WorkspaceMember::factory()->create(['workspace_id' => $workspace->id]);
-    \App\Models\MessMeal::create(['workspace_id' => $workspace->id, 'member_id' => $member->id, 'meal_date' => now()->toDateString(), 'breakfast' => 1, 'lunch' => 0, 'dinner' => 0]);
-    \App\Models\MessExpense::create(['workspace_id' => $workspace->id, 'expense_date' => now()->toDateString(), 'category' => 'market', 'amount' => '100.00']);
-    \App\Models\MessExpense::create(['workspace_id' => $workspace->id, 'expense_date' => now()->toDateString(), 'category' => 'rent', 'amount' => '500.00']);
+    MessMeal::create(['workspace_id' => $workspace->id, 'member_id' => $member->id, 'meal_date' => now()->toDateString(), 'breakfast' => 1, 'lunch' => 0, 'dinner' => 0]);
+    MessExpense::create(['workspace_id' => $workspace->id, 'expense_date' => now()->toDateString(), 'category' => 'market', 'amount' => '100.00']);
+    MessExpense::create(['workspace_id' => $workspace->id, 'expense_date' => now()->toDateString(), 'category' => 'rent', 'amount' => '500.00']);
 
     $report = app(MessAccountingService::class)->monthlyReport($workspace, (int) now()->year, (int) now()->month);
 

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Subscription;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 
 class SubscriptionService
 {
@@ -42,7 +43,7 @@ class SubscriptionService
         return $user->activeSubscription();
     }
 
-    public function endsAt(User $user): ?\Illuminate\Support\Carbon
+    public function endsAt(User $user): ?Carbon
     {
         if ($user->onTrial()) {
             return $user->trial_ends_at;

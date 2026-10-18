@@ -60,6 +60,7 @@ class PaymentService
             if (in_array($status, ['failed', 'cancelled', 'canceled'], true)) {
                 $payment->update(['status' => $status === 'completed' ? 'failed' : $status]);
             }
+
             return false;
         }
 

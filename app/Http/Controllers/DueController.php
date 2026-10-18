@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use App\Models\Due;
 use App\Models\DuePayment;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 
 class DueController extends Controller
 {

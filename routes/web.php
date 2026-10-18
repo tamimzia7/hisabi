@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminAuditLogController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminPaymentController;
+use App\Http\Controllers\Admin\AdminPlanController;
+use App\Http\Controllers\Admin\AdminSubscriptionController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -14,8 +20,9 @@ use App\Http\Controllers\MessMemberController;
 use App\Http\Controllers\MessReportController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\WorkspaceController;
 use App\Http\Controllers\Webhook\PaymentWebhookController;
+use App\Http\Controllers\WorkspaceController;
+use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -85,5 +92,24 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('webhooks/payments', PaymentWebhookController::class)
-    ->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\PreventRequestForgery::class])
+    ->withoutMiddleware([PreventRequestForgery::class])
     ->name('webhooks.payments');
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('users', [AdminUserController::class, 'index'])->name('users.index');
+    Route::get('users/{user}', [AdminUserController::class, 'show'])->name('users.show');
+    Route::post('users/{user}/suspend', [AdminUserController::class, 'suspend'])->name('users.suspend');
+    Route::post('users/{user}/reactivate', [AdminUserController::class, 'reactivate'])->name('users.reactivate');
+
+    Route::get('subscriptions', [AdminSubscriptionController::class, 'index'])->name('subscriptions.index');
+    Route::post('subscriptions/{subscription}/extend', [AdminSubscriptionController::class, 'extend'])->name('subscriptions.extend');
+
+    Route::get('payments', [AdminPaymentController::class, 'index'])->name('payments.index');
+
+    Route::get('plans', [AdminPlanController::class, 'index'])->name('plans.index');
+    Route::post('plans', [AdminPlanController::class, 'store'])->name('plans.store');
+    Route::put('plans/{plan}', [AdminPlanController::class, 'update'])->name('plans.update');
+
+    Route::get('audit-logs', [AdminAuditLogController::class, 'index'])->name('audit-logs.index');
+});

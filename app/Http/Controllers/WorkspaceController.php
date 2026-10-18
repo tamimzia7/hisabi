@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Workspace;
 use App\Services\SubscriptionService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 
 class WorkspaceController extends Controller
 {
