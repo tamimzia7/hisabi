@@ -6,22 +6,48 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('workspace_id')->nullable()->constrained('workspaces')->nullOnDelete();
+            $table->string('name');
+            $table->string('phone')->nullable();
+            $table->string('type', 20); // customer, supplier
+            $table->timestamps();
+
+            $table->index(['user_id', 'type']);
+        });
+
+        Schema::create('dues', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('contact_id')->constrained('contacts')->cascadeOnDelete();
+            $table->string('type', 20); // receivable, payable
+            $table->decimal('amount', 12, 2);
+            $table->date('due_date')->nullable();
+            $table->text('description')->nullable();
+            $table->string('status', 20)->default('open'); // open, settled
+            $table->timestamps();
+
+            $table->index(['user_id', 'type', 'status']);
+        });
+
+        Schema::create('due_payments', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('due_id')->constrained('dues')->cascadeOnDelete();
+            $table->decimal('amount', 12, 2);
+            $table->date('payment_date');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
+        Schema::dropIfExists('due_payments');
+        Schema::dropIfExists('dues');
         Schema::dropIfExists('contacts');
     }
 };

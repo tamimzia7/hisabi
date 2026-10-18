@@ -72,4 +72,29 @@ class User extends Authenticatable
             ->latest('ends_at')
             ->first();
     }
+
+    public function workspaces(): HasMany
+    {
+        return $this->hasMany(Workspace::class, 'owner_id');
+    }
+
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function contacts(): HasMany
+    {
+        return $this->hasMany(Contact::class);
+    }
+
+    public function dues(): HasMany
+    {
+        return $this->hasMany(Due::class);
+    }
+
+    public function categories(): HasMany
+    {
+        return $this->hasMany(Category::class);
+    }
 }
