@@ -15,8 +15,12 @@
                     </svg>
                     Hisabi
                 </a>
-                <h2>অ্যাকাউন্ট তৈরি করুন</h2>
-                <p>মাত্র ১ মিনিটে ফ্রি অ্যাকাউন্ট খুলুন</p>
+                <h2>{{ __("অ্যাকাউন্ট তৈরি করুন") }}</h2>
+                <p>{{ __("মাত্র ১ মিনিটে ফ্রি অ্যাকাউন্ট খুলুন") }}</p>
+                <div style="margin-top:8px; font-size:12px;">
+                    <a href="{{ route('language.switch', 'bn') }}">বাংলা</a> |
+                    <a href="{{ route('language.switch', 'en') }}">English</a>
+                </div>
             </div>
 
             @if ($errors->any())
@@ -34,34 +38,34 @@
                     <!-- Left column -->
                     <div>
                         <div class="form-group">
-                            <label for="name">আপনার নাম</label>
+                            <label for="name">{{ __('আপনার নাম') }}</label>
                             <div class="input-wrapper">
                                 <i class="fa-solid fa-user"></i>
-                                <input id="name" name="name" type="text" value="{{ old('name') }}" class="form-control" placeholder="পুরো নাম লিখুন" required autofocus>
+                                <input id="name" name="name" type="text" value="{{ old('name') }}" class="form-control" placeholder="{{ __("পুরো নাম লিখুন") }}" required autofocus>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="email">ইমেইল</label>
+                            <label for="email">{{ __("ইমেইল") }}</label>
                             <div class="input-wrapper">
                                 <i class="fa-solid fa-envelope"></i>
-                                <input id="email" name="email" type="email" value="{{ old('email') }}" class="form-control" placeholder="আপনার ইমেইল" required>
+                                <input id="email" name="email" type="email" value="{{ old('email') }}" class="form-control" placeholder="{{ __("আপনার ইমেইল") }}" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="password">পাসওয়ার্ড</label>
+                            <label for="password">{{ __("পাসওয়ার্ড") }}</label>
                             <div class="input-wrapper">
                                 <i class="fa-solid fa-lock"></i>
-                                <input id="password" name="password" type="password" class="form-control" placeholder="পাসওয়ার্ড তৈরি করুন" required>
+                                <input id="password" name="password" type="password" class="form-control" placeholder="{{ __("পাসওয়ার্ড তৈরি করুন") }}" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="password_confirmation">পাসওয়ার্ড আবার লিখুন</label>
+                            <label for="password_confirmation">{{ __("পাসওয়ার্ড আবার লিখুন") }}</label>
                             <div class="input-wrapper">
                                 <i class="fa-solid fa-lock"></i>
-                                <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" placeholder="পাসওয়ার্ড নিশ্চিত করুন" required>
+                                <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" placeholder="{{ __("পাসওয়ার্ড নিশ্চিত করুন") }}" required>
                             </div>
                         </div>
                     </div>
@@ -69,7 +73,7 @@
                     <!-- Right column -->
                     <div>
                         <div class="form-group">
-                            <label>হিসাবের ধরন</label>
+                            <label>{{ __("হিসাবের ধরন") }}</label>
                             <div style="display: flex; flex-direction: column; gap: 8px;">
                                 <label class="checkbox-label" style="padding: 10px; border: 1px solid var(--border-color); border-radius: 10px;">
                                     <input type="radio" name="account_type" value="personal" {{ old('account_type') === 'personal' ? 'checked' : '' }} required>
@@ -91,16 +95,16 @@
 
                         <div class="form-options" style="justify-content: flex-start;">
                             <label class="checkbox-label">
-                                <input type="checkbox" required> আমি শর্তাবলী মেনে নিচ্ছি
+                                <input type="checkbox" required> {{ __("আমি শর্তাবলী মেনে নিচ্ছি") }}
                             </label>
                         </div>
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" style="margin-top: 16px;">রেজিস্ট্রেশন করুন</button>
+                <button type="submit" class="btn btn-primary" style="margin-top: 16px;">{{ __("রেজিস্ট্রেশন করুন") }}</button>
 
                 <div class="auth-footer">
-                    আগে থেকেই অ্যাকাউন্ট আছে? <a href="{{ route('login') }}">লগইন করুন</a>
+                    {{ __("আগে থেকেই অ্যাকাউন্ট আছে?") }} <a href="{{ route('login') }}">{{ __("লগইন করুন") }}</a>
                 </div>
             </form>
 

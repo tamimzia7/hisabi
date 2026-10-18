@@ -27,6 +27,16 @@ use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 
+Route::get('language/{locale}', function (string $locale) {
+    if (! in_array($locale, ['en', 'bn'], true)) {
+        abort(404);
+    }
+
+    session(['locale' => $locale]);
+
+    return redirect()->back();
+})->name('language.switch');
+
 Route::get('/', function () {
     $plans = Schema::hasTable('subscription_plans')
         ? SubscriptionPlan::where('is_active', true)->orderBy('price')->get()

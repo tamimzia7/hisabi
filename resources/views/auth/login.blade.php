@@ -14,8 +14,12 @@
                     </svg>
                     Hisabi
                 </a>
-                <h2>স্বাগতম!</h2>
-                <p>আপনার অ্যাকাউন্টে লগইন করুন</p>
+                <h2>{{ __('লগইন') }}</h2>
+                <p>{{ __('আপনার হিসাবে প্রবেশ করুন।') }}</p>
+                <div style="margin-top:8px; font-size:12px;">
+                    <a href="{{ route('language.switch', 'bn') }}">বাংলা</a> |
+                    <a href="{{ route('language.switch', 'en') }}">English</a>
+                </div>
             </div>
 
             @if (session('status'))
@@ -32,7 +36,7 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="form-group">
-                    <label for="email">ইমেইল</label>
+                    <label for="email">{{ __('ইমেইল') }}</label>
                     <div class="input-wrapper">
                         <i class="fa-solid fa-envelope"></i>
                         <input id="email" name="email" type="email" value="{{ old('email') }}" class="form-control" placeholder="আপনার ইমেইল" required autofocus>
@@ -40,7 +44,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password">পাসওয়ার্ড</label>
+                    <label for="password">{{ __('পাসওয়ার্ড') }}</label>
                     <div class="input-wrapper">
                         <i class="fa-solid fa-lock"></i>
                         <input id="password" name="password" type="password" class="form-control" placeholder="পাসওয়ার্ড লিখুন" required>
@@ -49,20 +53,20 @@
 
                 <div class="form-options">
                     <label class="checkbox-label">
-                        <input type="checkbox" name="remember" value="1"> মনে রাখুন
+                        <input type="checkbox" name="remember" value="1"> {{ __('মনে রাখুন') }}
                     </label>
-                    <a href="{{ route('password.request') }}">পাসওয়ার্ড ভুলে গেছেন?</a>
+                    <a href="{{ route('password.request') }}">{{ __('পাসওয়ার্ড ভুলে গেছেন?') }}</a>
                 </div>
 
-                <button type="submit" class="btn btn-primary">লগইন করুন</button>
+                <button type="submit" class="btn btn-primary">{{ __('লগইন করুন') }}</button>
 
                 <div class="auth-footer">
-                    নতুন ব্যবহারকারী? <a href="{{ route('register') }}">রেজিস্ট্রেশন করুন</a>
+                    {{ __('নতুন ব্যবহারকারী?') }} <a href="{{ route('register') }}">{{ __('রেজিস্ট্রেশন করুন') }}</a>
                 </div>
             </form>
 
             <div style="text-align: center;">
-                <a href="{{ route('home') }}" class="back-home"><i class="fa-solid fa-arrow-left"></i> হোমে ফিরে যান</a>
+                <a href="{{ route('home') }}" class="back-home"><i class="fa-solid fa-arrow-left"></i> {{ __('হোমে ফিরে যান') }}</a>
             </div>
         </div>
     </div>

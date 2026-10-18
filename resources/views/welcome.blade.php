@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Hisabi — ব্যক্তিগত, মেস ও ছোট ব্যবসার হিসাব সহজে পরিচালনা করার প্ল্যাটফর্ম।">
     <title>Hisabi - Mobile App</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -39,14 +39,18 @@
         header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
         .nav-container { display: flex; justify-content: space-between; align-items: center; }
         .nav-links { display: none; }
-        .header-btn { width: auto; padding: 8px 16px; font-size: 14px; border-radius: 8px; text-decoration: none; color: white; background-color: var(--brand-green); font-weight: 600; border: none; }
+        .header-btn { width: auto; padding: 8px 16px; font-size: 14px; border-radius: 8px; text-decoration: none; color: white; background-color: var(--brand-green); font-weight: 600; border: none; white-space: nowrap; }
+        .header-actions { display: flex; gap: 10px; align-items: center; }
+        .lang-link { font-size: 12px; color: var(--text-gray); text-decoration: none; white-space: nowrap; }
+        .lang-link:hover { color: var(--brand-green); }
+        .header-login { width: auto; padding: 8px 16px; font-size: 14px; white-space: nowrap; }
         .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 20px; border-radius: 10px; font-weight: 600; text-decoration: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: none; cursor: pointer; font-size: 16px; width: 100%; }
         .btn-primary { background-color: var(--brand-green); color: var(--white); box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2); }
         .btn-primary:active { transform: scale(0.96); background-color: var(--brand-green-hover); }
         .btn-outline { background-color: transparent; color: var(--brand-navy); border: 1.5px solid var(--border-color); }
         .btn-outline:active { background-color: var(--bg-light); transform: scale(0.96); }
-        body.has-bottom-nav { padding-bottom: calc(var(--bottom-nav-height) + 10px); }
-        .hero { padding: 50px 0 70px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 65vh; }
+        body.has-bottom-nav { padding-bottom: 0; }
+        .hero { padding-top: 50px; padding-bottom: 70px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 65vh; }
         .hero-content { width: 100%; max-width: 700px; }
         .anim-hero-1 { opacity: 0; animation: fadeUp 0.8s ease-out 0.1s forwards; }
         .anim-hero-2 { opacity: 0; animation: fadeUp 0.8s ease-out 0.25s forwards; }
@@ -117,6 +121,19 @@
         .bottom-nav-item.active { color: var(--brand-green); }
         .bottom-nav-item.active i { transform: translateY(-2px); }
         .bottom-nav-item.active::before { content: ''; position: absolute; top: 0; width: 30px; height: 3px; background-color: var(--brand-green); border-radius: 0 0 4px 4px; }
+        @media (max-width: 767px) {
+            .nav-container { flex-wrap: wrap; gap: 8px; }
+            .logo { font-size: 18px; }
+            .logo svg { width: 28px; height: 28px; }
+            .header-actions { gap: 6px; }
+            .lang-link { font-size: 11px; }
+            .header-login { padding: 7px 12px; font-size: 13px; }
+            .header-btn { padding: 7px 12px; font-size: 13px; }
+            .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 20px; text-align: left; }
+            .footer-brand { grid-column: 1 / -1; text-align: center; }
+            .footer-bottom { text-align: center; }
+            footer { padding-bottom: calc(var(--bottom-nav-height) + 20px); }
+        }
         @media (min-width: 768px) {
             .container { padding: 0 40px; }
             .section-padding { padding: 90px 0; }
@@ -132,7 +149,7 @@
             .header-btn { padding: 10px 20px; font-size: 16px; }
             body.has-bottom-nav { padding-bottom: 0; }
             .bottom-nav { display: none; }
-            .hero { padding: 120px 0 100px; min-height: 70vh; }
+            .hero { padding-top: 120px; padding-bottom: 100px; min-height: 70vh; }
             .hero h1 { font-size: 56px; }
             .hero p { font-size: 20px; margin-bottom: 40px; }
             .hero-buttons { flex-direction: row; justify-content: center; gap: 16px; max-width: none; margin-bottom: 40px; }
@@ -181,8 +198,10 @@
                 <a href="#pricing">প্রাইসিং</a>
                 <a href="#help-support">সাপোর্ট</a>
             </nav>
-            <div style="display: flex; gap: 10px; align-items: center;">
-                <a href="{{ route('login') }}" class="btn btn-outline" style="width: auto; padding: 8px 16px; font-size: 14px;">লগইন</a>
+            <div class="header-actions">
+                <a href="{{ route('language.switch', 'bn') }}" class="lang-link">বাংলা</a>
+                <a href="{{ route('language.switch', 'en') }}" class="lang-link">English</a>
+                <a href="{{ route('login') }}" class="btn btn-outline header-login">লগইন</a>
                 <a href="{{ route('register') }}" class="btn header-btn">ফ্রি শুরু</a>
             </div>
         </div>
@@ -365,8 +384,8 @@
             <div class="footer-bottom">
                 <p>&copy; {{ date('Y') }} Hisabi. সর্বস্বত্ব সংরক্ষিত।</p>
                 <div class="footer-bottom-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
+                    <a href="#">গোপনীয়তা নীতি</a>
+                    <a href="#">ব্যবহারের শর্তাবলী</a>
                 </div>
             </div>
         </div>
@@ -416,4 +435,3 @@
     </script>
 </body>
 </html>
-PHP
