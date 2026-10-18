@@ -17,22 +17,22 @@
         <div>
             <label for="email" class="mb-1 block text-sm font-medium text-slate-700">ইমেইল</label>
             <input id="email" name="email" type="email" value="{{ old('email', $email) }}" required
-                class="w-full rounded-lg border border-slate-300 px-3 py-2 text-base focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-200">
+                class="w-full rounded-lg border border-slate-300 px-3 py-2 text-base focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-yellow-200">
         </div>
 
         <div>
             <label for="password" class="mb-1 block text-sm font-medium text-slate-700">নতুন পাসওয়ার্ড</label>
             <input id="password" name="password" type="password" required
-                class="w-full rounded-lg border border-slate-300 px-3 py-2 text-base focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-200">
+                class="w-full rounded-lg border border-slate-300 px-3 py-2 text-base focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-yellow-200">
         </div>
 
         <div>
             <label for="password_confirmation" class="mb-1 block text-sm font-medium text-slate-700">পাসওয়ার্ড আবার লিখুন</label>
             <input id="password_confirmation" name="password_confirmation" type="password" required
-                class="w-full rounded-lg border border-slate-300 px-3 py-2 text-base focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-200">
+                class="w-full rounded-lg border border-slate-300 px-3 py-2 text-base focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-yellow-200">
         </div>
 
-        <button type="submit" class="w-full rounded-lg bg-green-600 px-4 py-3 text-base font-semibold text-white hover:bg-green-700">
+        <button type="submit" class="w-full rounded-lg bg-yellow-400 px-4 py-3 text-base font-semibold text-slate-900 hover:bg-yellow-500">
             পাসওয়ার্ড পরিবর্তন করুন
         </button>
     </form>

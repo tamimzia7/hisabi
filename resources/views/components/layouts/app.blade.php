@@ -13,7 +13,7 @@
         <div class="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
             <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-2">
                 <img src="{{ asset('icon.png') }}" alt="Hisabi" class="h-8 w-8 rounded">
-                <span class="text-lg font-bold text-green-700">Hisabi</span>
+                <span class="text-lg font-bold text-green-900">Hisabi</span>
             </a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf

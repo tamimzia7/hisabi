@@ -6,7 +6,7 @@
 
         <div class="mt-4 grid gap-3 sm:grid-cols-2">
             <div class="rounded-xl bg-green-50 p-4">
-                <p class="text-xs font-medium text-green-700">হিসাবের ধরন</p>
+                <p class="text-xs font-medium text-green-900">হিসাবের ধরন</p>
                 <p class="mt-1 text-lg font-semibold text-green-900">
                     @php
                         $labels = [
@@ -34,7 +34,7 @@
         @if (in_array($user->account_type, ['personal', 'business'], true) && isset($totals))
             <div class="mt-4 grid gap-3 sm:grid-cols-3">
                 <div class="rounded-xl bg-green-50 p-4">
-                    <p class="text-xs text-green-700">মোট আয়</p>
+                    <p class="text-xs text-green-900">মোট আয়</p>
                     <p class="text-xl font-bold text-green-900">{{ $totals['income'] }}</p>
                 </div>
                 <div class="rounded-xl bg-red-50 p-4">
@@ -48,14 +48,14 @@
             </div>
 
             <div class="mt-4">
-                <a href="{{ route('transactions.index') }}" class="inline-block rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700">লেনদেন দেখুন</a>
+                <a href="{{ route('transactions.index') }}" class="inline-block rounded-lg bg-yellow-400 px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-yellow-500">লেনদেন দেখুন</a>
                 <a href="{{ route('dues.index') }}" class="ml-2 inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700">বাকি হিসাব</a>
             </div>
         @endif
 
         @if ($user->account_type === 'mess' && isset($workspaces))
             <div class="mt-4">
-                <a href="{{ route('workspaces.index') }}" class="inline-block rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700">মেস ওয়ার্কস্পেস</a>
+                <a href="{{ route('workspaces.index') }}" class="inline-block rounded-lg bg-yellow-400 px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-yellow-500">মেস ওয়ার্কস্পেস</a>
             </div>
         @endif
 

@@ -16,6 +16,6 @@
             <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="include_water" value="1"> পানি</label>
         </div>
 
-        <button class="w-full rounded-lg bg-green-600 px-4 py-3 text-base font-semibold text-white hover:bg-green-700">তৈরি করুন</button>
+        <button class="w-full rounded-lg bg-yellow-400 px-4 py-3 text-base font-semibold text-slate-900 hover:bg-yellow-500">তৈরি করুন</button>
     </form>
 </x-layouts.app>

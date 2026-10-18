@@ -1,11 +1,11 @@
 <x-layouts.app>
     <div class="mb-4 flex items-center justify-between">
         <h1 class="text-2xl font-bold text-slate-900">মেস ওয়ার্কস্পেস</h1>
-        <a href="{{ route('workspaces.create') }}" class="rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700">নতুন মেস</a>
+        <a href="{{ route('workspaces.create') }}" class="rounded-lg bg-yellow-400 px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-yellow-500">নতুন মেস</a>
     </div>
 
     @if (session('status'))
-        <div class="mb-4 rounded-lg bg-green-50 p-3 text-sm text-green-700">{{ session('status') }}</div>
+        <div class="mb-4 rounded-lg bg-green-50 p-3 text-sm text-green-900">{{ session('status') }}</div>
     @endif
 
     <div class="grid gap-3">

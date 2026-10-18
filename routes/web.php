@@ -22,11 +22,17 @@ use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Webhook\PaymentWebhookController;
 use App\Http\Controllers\WorkspaceController;
+use App\Models\SubscriptionPlan;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 
 Route::get('/', function () {
-    return view('welcome');
+    $plans = Schema::hasTable('subscription_plans')
+        ? SubscriptionPlan::where('is_active', true)->orderBy('price')->get()
+        : collect();
+
+    return view('welcome', compact('plans'));
 })->name('home');
 
 Route::middleware('guest')->group(function () {

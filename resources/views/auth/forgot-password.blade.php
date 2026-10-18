@@ -3,7 +3,7 @@
     <p class="mb-6 text-sm text-slate-600">আপনার ইমেইল লিখুন, রিসেট লিংক পাঠানো হবে।</p>
 
     @if (session('status'))
-        <div class="mb-4 rounded-lg bg-green-50 p-3 text-sm text-green-700">{{ session('status') }}</div>
+        <div class="mb-4 rounded-lg bg-green-50 p-3 text-sm text-green-900">{{ session('status') }}</div>
     @endif
 
     @if ($errors->any())
@@ -19,15 +19,15 @@
         <div>
             <label for="email" class="mb-1 block text-sm font-medium text-slate-700">ইমেইল</label>
             <input id="email" name="email" type="email" value="{{ old('email') }}" required
-                class="w-full rounded-lg border border-slate-300 px-3 py-2 text-base focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-200">
+                class="w-full rounded-lg border border-slate-300 px-3 py-2 text-base focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-yellow-200">
         </div>
 
-        <button type="submit" class="w-full rounded-lg bg-green-600 px-4 py-3 text-base font-semibold text-white hover:bg-green-700">
+        <button type="submit" class="w-full rounded-lg bg-yellow-400 px-4 py-3 text-base font-semibold text-slate-900 hover:bg-yellow-500">
             রিসেট লিংক পাঠান
         </button>
     </form>
 
     <p class="mt-6 text-center text-sm text-slate-600">
-        <a href="{{ route('login') }}" class="font-medium text-green-700 hover:underline">লগইনে ফিরে যান</a>
+        <a href="{{ route('login') }}" class="font-medium text-green-900 hover:underline">লগইনে ফিরে যান</a>
     </p>
 </x-layouts.guest>

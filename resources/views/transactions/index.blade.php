@@ -1,16 +1,16 @@
 <x-layouts.app>
     <div class="mb-4 flex flex-wrap items-center justify-between gap-2">
         <h1 class="text-2xl font-bold text-slate-900">লেনদেন</h1>
-        <a href="{{ route('transactions.create') }}" class="rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700">নতুন লেনদেন</a>
+        <a href="{{ route('transactions.create') }}" class="rounded-lg bg-yellow-400 px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-yellow-500">নতুন লেনদেন</a>
     </div>
 
     @if (session('status'))
-        <div class="mb-4 rounded-lg bg-green-50 p-3 text-sm text-green-700">{{ session('status') }}</div>
+        <div class="mb-4 rounded-lg bg-green-50 p-3 text-sm text-green-900">{{ session('status') }}</div>
     @endif
 
     <div class="mb-4 grid gap-3 sm:grid-cols-3">
         <div class="rounded-xl bg-green-50 p-4">
-            <p class="text-xs text-green-700">মোট আয়</p>
+            <p class="text-xs text-green-900">মোট আয়</p>
             <p class="text-xl font-bold text-green-900">{{ $totals['income'] }}</p>
         </div>
         <div class="rounded-xl bg-red-50 p-4">
@@ -58,7 +58,7 @@
                         <td class="px-4 py-3">{{ $tx->transaction_date->format('d M Y') }}</td>
                         <td class="px-4 py-3">
                             @if ($tx->type === 'income')
-                                <span class="text-green-700 font-medium">আয়</span>
+                                <span class="text-green-900 font-medium">আয়</span>
                             @else
                                 <span class="text-red-700 font-medium">খরচ</span>
                             @endif

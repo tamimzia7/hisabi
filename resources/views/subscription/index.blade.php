@@ -2,7 +2,7 @@
     <h1 class="mb-4 text-2xl font-bold text-slate-900">সাবস্ক্রিপশন</h1>
 
     @if (session('status'))
-        <div class="mb-4 rounded-lg bg-green-50 p-3 text-sm text-green-700">{{ session('status') }}</div>
+        <div class="mb-4 rounded-lg bg-green-50 p-3 text-sm text-green-900">{{ session('status') }}</div>
     @endif
     @if (session('error'))
         <div class="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-700">{{ session('error') }}</div>
@@ -65,13 +65,13 @@
                         @if ($plan->description)
                             <p class="mt-1 text-sm text-slate-600">{{ $plan->description }}</p>
                         @endif
-                        <p class="mt-3 text-2xl font-bold text-green-700">{{ $plan->price }} {{ $plan->currency }}</p>
+                        <p class="mt-3 text-2xl font-bold text-green-900">{{ $plan->price }} {{ $plan->currency }}</p>
                         <p class="text-xs text-slate-500">{{ $plan->duration_days }} দিন</p>
 
                         <form method="POST" action="{{ route('subscription.checkout') }}" class="mt-4">
                             @csrf
                             <input type="hidden" name="plan_id" value="{{ $plan->id }}">
-                            <button type="submit" class="w-full rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700">
+                            <button type="submit" class="w-full rounded-lg bg-yellow-400 px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-yellow-500">
                                 কিনুন
                             </button>
                         </form>

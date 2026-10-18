@@ -38,6 +38,6 @@
             <textarea name="description" rows="3" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-base">{{ $transaction->description }}</textarea>
         </div>
 
-        <button class="w-full rounded-lg bg-green-600 px-4 py-3 text-base font-semibold text-white hover:bg-green-700">আপডেট করুন</button>
+        <button class="w-full rounded-lg bg-yellow-400 px-4 py-3 text-base font-semibold text-slate-900 hover:bg-yellow-500">আপডেট করুন</button>
     </form>
 </x-layouts.app>

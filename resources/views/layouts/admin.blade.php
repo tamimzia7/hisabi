@@ -38,7 +38,7 @@
 
             <main class="p-4">
                 @if (session('status'))
-                    <div class="mb-4 rounded-lg bg-green-50 p-3 text-sm text-green-700">{{ session('status') }}</div>
+                    <div class="mb-4 rounded-lg bg-green-50 p-3 text-sm text-green-900">{{ session('status') }}</div>
                 @endif
                 @if (session('error'))
                     <div class="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-700">{{ session('error') }}</div>

@@ -14,7 +14,7 @@
             @if ($user->isSuspended())
                 <form method="POST" action="{{ route('admin.users.reactivate', $user) }}">
                     @csrf
-                    <button class="rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white">রিঅ্যাক্টিভেট</button>
+                    <button class="rounded-lg bg-yellow-400 px-4 py-2 text-sm font-semibold text-slate-900">রিঅ্যাক্টিভেট</button>
                 </form>
             @else
                 <form method="POST" action="{{ route('admin.users.suspend', $user) }}">

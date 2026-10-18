@@ -2,12 +2,12 @@
     <h1 class="mb-4 text-2xl font-bold text-slate-900">বাকি হিসাব</h1>
 
     @if (session('status'))
-        <div class="mb-4 rounded-lg bg-green-50 p-3 text-sm text-green-700">{{ session('status') }}</div>
+        <div class="mb-4 rounded-lg bg-green-50 p-3 text-sm text-green-900">{{ session('status') }}</div>
     @endif
 
     <div class="mb-4 grid gap-3 sm:grid-cols-2">
         <div class="rounded-xl bg-green-50 p-4">
-            <p class="text-xs text-green-700">পাব (receivable)</p>
+            <p class="text-xs text-green-900">পাব (receivable)</p>
             <p class="text-xl font-bold text-green-900">{{ $receivableTotal }}</p>
         </div>
         <div class="rounded-xl bg-red-50 p-4">
@@ -26,7 +26,7 @@
                 <option value="customer">কাস্টমার</option>
                 <option value="supplier">সাপ্লায়ার</option>
             </select>
-            <button class="rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white sm:col-span-3">যোগ করুন</button>
+            <button class="rounded-lg bg-yellow-400 px-4 py-2 text-sm font-semibold text-slate-900 sm:col-span-3">যোগ করুন</button>
         </form>
     </div>
 
@@ -46,7 +46,7 @@
             </select>
             <input name="amount" type="number" step="0.01" min="0.01" placeholder="পরিমাণ" class="rounded-lg border border-slate-300 px-3 py-2 text-sm" required>
             <input name="due_date" type="date" class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
-            <button class="rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white sm:col-span-4">বাকি যোগ করুন</button>
+            <button class="rounded-lg bg-yellow-400 px-4 py-2 text-sm font-semibold text-slate-900 sm:col-span-4">বাকি যোগ করুন</button>
         </form>
     </div>
 

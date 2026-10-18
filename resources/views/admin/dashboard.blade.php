@@ -14,7 +14,7 @@
         </div>
         <div class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             <p class="text-xs text-slate-500">সক্রিয় ট্রায়াল</p>
-            <p class="text-2xl font-bold text-green-700">{{ $stats['trial_active'] }}</p>
+            <p class="text-2xl font-bold text-green-900">{{ $stats['trial_active'] }}</p>
         </div>
         <div class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             <p class="text-xs text-slate-500">মেয়াদ শেষ ট্রায়াল</p>
@@ -22,7 +22,7 @@
         </div>
         <div class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             <p class="text-xs text-slate-500">সক্রিয় সাবস্ক্রিপশন</p>
-            <p class="text-2xl font-bold text-green-700">{{ $stats['subscriptions_active'] }}</p>
+            <p class="text-2xl font-bold text-green-900">{{ $stats['subscriptions_active'] }}</p>
         </div>
         <div class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             <p class="text-xs text-slate-500">মেয়াদ শেষ সাবস্ক্রিপশন</p>

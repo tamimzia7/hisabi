@@ -5,7 +5,7 @@
     </div>
 
     @if (session('status'))
-        <div class="mb-4 rounded-lg bg-green-50 p-3 text-sm text-green-700">{{ session('status') }}</div>
+        <div class="mb-4 rounded-lg bg-green-50 p-3 text-sm text-green-900">{{ session('status') }}</div>
     @endif
 
     <div class="mb-6 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
@@ -14,7 +14,7 @@
             @csrf
             <input name="name" placeholder="নাম" class="rounded-lg border border-slate-300 px-3 py-2 text-sm" required>
             <input name="phone" placeholder="ফোন" class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
-            <button class="rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white">যোগ করুন</button>
+            <button class="rounded-lg bg-yellow-400 px-4 py-2 text-sm font-semibold text-slate-900">যোগ করুন</button>
         </form>
     </div>
 
@@ -32,7 +32,7 @@
             <input name="breakfast" type="number" min="0" max="10" placeholder="সকাল" class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
             <input name="lunch" type="number" min="0" max="10" placeholder="দুপুর" class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
             <input name="dinner" type="number" min="0" max="10" placeholder="রাত" class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
-            <button class="rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white sm:col-span-5">মিল সংরক্ষণ</button>
+            <button class="rounded-lg bg-yellow-400 px-4 py-2 text-sm font-semibold text-slate-900 sm:col-span-5">মিল সংরক্ষণ</button>
         </form>
     </div>
 
@@ -51,7 +51,7 @@
             </select>
             <input name="amount" type="number" step="0.01" min="0.01" placeholder="পরিমাণ" class="rounded-lg border border-slate-300 px-3 py-2 text-sm" required>
             <input name="description" placeholder="বিবরণ" class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
-            <button class="rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white sm:col-span-4">খরচ যোগ</button>
+            <button class="rounded-lg bg-yellow-400 px-4 py-2 text-sm font-semibold text-slate-900 sm:col-span-4">খরচ যোগ</button>
         </form>
     </div>
 
@@ -68,7 +68,7 @@
             <input name="amount" type="number" step="0.01" min="0.01" placeholder="পরিমাণ" class="rounded-lg border border-slate-300 px-3 py-2 text-sm" required>
             <input name="deposit_date" type="date" value="{{ now()->toDateString() }}" class="rounded-lg border border-slate-300 px-3 py-2 text-sm" required>
             <input name="description" placeholder="বিবরণ" class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
-            <button class="rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white sm:col-span-4">জমা সংরক্ষণ</button>
+            <button class="rounded-lg bg-yellow-400 px-4 py-2 text-sm font-semibold text-slate-900 sm:col-span-4">জমা সংরক্ষণ</button>
         </form>
     </div>
 

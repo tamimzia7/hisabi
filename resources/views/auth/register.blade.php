@@ -1,14 +1,21 @@
 <x-layouts.auth>
-    <div class="flex min-h-screen items-center justify-center px-4 py-8">
-        <div class="w-full max-w-4xl rounded-2xl border border-slate-100 bg-white p-6 shadow-lg sm:p-8">
-            <div class="mb-6 text-center">
-                <a href="{{ route('home') }}" class="inline-flex items-center justify-center gap-2">
-                    <img src="{{ asset('icon.png') }}" alt="Hisabi" class="h-10 w-10 rounded-xl">
-                    <span class="text-xl font-bold text-emerald-700">Hisabi</span>
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="{{ route('home') }}" class="logo">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100" height="100" rx="24" fill="#ECFDF5"/>
+                        <path d="M30 25V75" stroke="#10B981" stroke-width="12" stroke-linecap="round"/>
+                        <path d="M70 25V75" stroke="#10B981" stroke-width="12" stroke-linecap="round"/>
+                        <path d="M30 50H70" stroke="#10B981" stroke-width="12" stroke-linecap="round"/>
+                        <path d="M45 35V25" stroke="#0F172A" stroke-width="8" stroke-linecap="round"/>
+                        <path d="M55 45V25" stroke="#0F172A" stroke-width="8" stroke-linecap="round"/>
+                        <path d="M65 40V25" stroke="#0F172A" stroke-width="8" stroke-linecap="round"/>
+                    </svg>
+                    Hisabi
                 </a>
-                <p class="mt-1 text-sm text-slate-500">সহজ হিসাব, সবার জন্য</p>
-                <h1 class="mt-4 text-2xl font-bold text-slate-900">নিবন্ধন</h1>
-                <p class="mt-1 text-sm text-slate-500">আপনার হিসাব শুরু করতে তথ্য দিন।</p>
+                <h2>অ্যাকাউন্ট তৈরি করুন</h2>
+                <p>মাত্র ১ মিনিটে ফ্রি অ্যাকাউন্ট খুলুন</p>
             </div>
 
             @if ($errors->any())
@@ -19,72 +26,77 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('register') }}" class="grid gap-6 lg:grid-cols-2">
+            <form method="POST" action="{{ route('register') }}">
                 @csrf
-
-                <!-- Left: account info -->
-                <div class="space-y-4">
-                    <div>
-                        <label for="name" class="mb-1.5 block text-sm font-medium text-slate-700">পুরো নাম</label>
-                        <input id="name" name="name" type="text" value="{{ old('name') }}" required autofocus
-                            class="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-base focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-200">
-                    </div>
-
-                    <div>
-                        <label for="email" class="mb-1.5 block text-sm font-medium text-slate-700">ইমেইল</label>
-                        <input id="email" name="email" type="email" value="{{ old('email') }}" required
-                            class="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-base focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-200">
-                    </div>
-
-                    <div>
-                        <label for="password" class="mb-1.5 block text-sm font-medium text-slate-700">পাসওয়ার্ড</label>
-                        <input id="password" name="password" type="password" required
-                            class="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-base focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-200">
-                    </div>
-
-                    <div>
-                        <label for="password_confirmation" class="mb-1.5 block text-sm font-medium text-slate-700">পাসওয়ার্ড আবার লিখুন</label>
-                        <input id="password_confirmation" name="password_confirmation" type="password" required
-                            class="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-base focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-200">
+                <div class="form-group">
+                    <label for="name">আপনার নাম</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user"></i>
+                        <input id="name" name="name" type="text" value="{{ old('name') }}" class="form-control" placeholder="পুরো নাম লিখুন" required autofocus>
                     </div>
                 </div>
 
-                <!-- Right: account type -->
-                <div>
-                    <p class="mb-2 text-sm font-medium text-slate-700">হিসাবের ধরন বেছে নিন</p>
-                    <div class="grid gap-3">
-                        @php
-                            $types = [
-                                'personal' => ['title' => 'Personal হিসাব', 'desc' => 'ব্যক্তিগত আয়, খরচ ও বাকি হিসাব।'],
-                                'mess' => ['title' => 'মেস / ব্যাচেলর হিসাব', 'desc' => 'মিল, সদস্য, বাজার খরচ ও মিল রেট।'],
-                                'business' => ['title' => 'ব্যবসার হিসাব', 'desc' => 'বিক্রি, খরচ, কাস্টমার বাকি ও সাপ্লায়ার পাওনা।'],
-                            ];
-                        @endphp
-                        @foreach ($types as $value => $info)
-                            <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 p-4 hover:border-emerald-400 has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-50">
-                                <input type="radio" name="account_type" value="{{ $value }}" class="mt-1 h-5 w-5 text-emerald-600" {{ old('account_type') === $value ? 'checked' : '' }} required>
-                                <span>
-                                    <span class="block font-semibold text-slate-900">{{ $info['title'] }}</span>
-                                    <span class="block text-sm text-slate-600">{{ $info['desc'] }}</span>
-                                </span>
-                            </label>
-                        @endforeach
+                <div class="form-group">
+                    <label for="email">ইমেইল</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input id="email" name="email" type="email" value="{{ old('email') }}" class="form-control" placeholder="আপনার ইমেইল" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">পাসওয়ার্ড</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input id="password" name="password" type="password" class="form-control" placeholder="পাসওয়ার্ড তৈরি করুন" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password_confirmation">পাসওয়ার্ড আবার লিখুন</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" placeholder="পাসওয়ার্ড নিশ্চিত করুন" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>হিসাবের ধরন</label>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label class="checkbox-label" style="padding: 10px; border: 1px solid var(--border-color); border-radius: 10px;">
+                            <input type="radio" name="account_type" value="personal" {{ old('account_type') === 'personal' ? 'checked' : '' }} required>
+                            Personal হিসাব
+                        </label>
+                        <label class="checkbox-label" style="padding: 10px; border: 1px solid var(--border-color); border-radius: 10px;">
+                            <input type="radio" name="account_type" value="mess" {{ old('account_type') === 'mess' ? 'checked' : '' }} required>
+                            মেস / ব্যাচেলর হিসাব
+                        </label>
+                        <label class="checkbox-label" style="padding: 10px; border: 1px solid var(--border-color); border-radius: 10px;">
+                            <input type="radio" name="account_type" value="business" {{ old('account_type') === 'business' ? 'checked' : '' }} required>
+                            ব্যবসার হিসাব
+                        </label>
                     </div>
                     @error('account_type')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
 
-                <div class="lg:col-span-2">
-                    <button type="submit" class="w-full rounded-xl bg-emerald-600 px-4 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2">
-                        নিবন্ধন করুন
-                    </button>
+                <div class="form-options" style="justify-content: flex-start;">
+                    <label class="checkbox-label">
+                        <input type="checkbox" required> আমি শর্তাবলী মেনে নিচ্ছি
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">রেজিস্ট্রেশন করুন</button>
+
+                <div class="auth-footer">
+                    আগে থেকেই অ্যাকাউন্ট আছে? <a href="{{ route('login') }}">লগইন করুন</a>
                 </div>
             </form>
 
-            <p class="mt-6 text-center text-sm text-slate-600">
-                আগেই অ্যাকাউন্ট আছে? <a href="{{ route('login') }}" class="font-medium text-emerald-700 hover:underline">লগইন করুন</a>
-            </p>
+            <div style="text-align: center;">
+                <a href="{{ route('home') }}" class="back-home"><i class="fa-solid fa-arrow-left"></i> হোমে ফিরে যান</a>
+            </div>
         </div>
     </div>
 </x-layouts.auth>
