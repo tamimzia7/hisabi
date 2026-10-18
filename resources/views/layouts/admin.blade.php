@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin — {{ config('app.name', 'Hisabi') }}</title>
+    <link rel="icon" href="{{ asset('icon.png') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen bg-slate-100 text-slate-900 antialiased">
     <div class="flex min-h-screen">
         <aside class="hidden w-64 bg-slate-900 text-slate-100 lg:block">
-            <div class="px-4 py-5 text-lg font-bold">Hisabi Admin</div>
+            <div class="flex items-center gap-2 px-4 py-5 text-lg font-bold">
+                <img src="{{ asset('icon.png') }}" alt="Hisabi" class="h-8 w-8 rounded">
+                Hisabi Admin
+            </div>
             <nav class="space-y-1 px-2">
                 <a href="{{ route('admin.dashboard') }}" class="block rounded-lg px-3 py-2 text-sm hover:bg-slate-800">ড্যাশবোর্ড</a>
                 <a href="{{ route('admin.users.index') }}" class="block rounded-lg px-3 py-2 text-sm hover:bg-slate-800">ব্যবহারকারী</a>
