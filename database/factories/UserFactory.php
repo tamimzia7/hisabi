@@ -30,6 +30,9 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'account_type' => 'personal',
+            'trial_starts_at' => now(),
+            'trial_ends_at' => now()->addDays(30),
         ];
     }
 
